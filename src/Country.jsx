@@ -1,13 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import {
-  CountryDivStyle,
-  CountryDivWrapper,
-  CountryHeader,
-  CountryHeading,
-  CountryImg,
-  CountryInput
-} from './CountryStyle';
 import axios from 'axios';
+import './Country.css';
 
 const Country = () => {
   let timer = null;
@@ -26,7 +19,6 @@ const Country = () => {
 
   const handleChange = (val) => {
     let newData = data.filter((item) => item.name.common.includes(val));
-    console.log(newData);
     if (newData.length > 0) {
       setActualData([...newData]);
     } else {
@@ -50,9 +42,9 @@ const Country = () => {
   }, []);
 
   return (
-    <CountryDivWrapper className="container">
-      <CountryHeader>
-        <CountryInput
+    <div className="container">
+      <div className="header">
+        <input
           type="text"
           placeholder="Search for countries..."
           name="search"
@@ -60,18 +52,18 @@ const Country = () => {
             handleChange(e.target.value);
           }, 2000)}
         />
-      </CountryHeader>
+      </div>
       {actualData.map((item, idx) => (
-        <CountryDivStyle key={`${item.name.common}_${idx}`} className="countryCard">
-          <CountryImg
+        <div key={`${item.name.common}_${idx}`} className="countryCard">
+          <img
             src={item.flags.png}
             alt={item.flags.alt ? item.flags.alt : item.name.common}
             className="countryFlag"
           />
-          <CountryHeading className="countryName">{item.name.common}</CountryHeading>
-        </CountryDivStyle>
+          <p className="countryName">{item.name.common}</p>
+        </div>
       ))}
-    </CountryDivWrapper>
+    </div>
   );
 };
 
