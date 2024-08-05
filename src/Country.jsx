@@ -16,7 +16,7 @@ const Country = () => {
 
   const fetchData = async () => {
     try {
-      const res = await axios(' https://xcountries-backend.azurewebsites.net/all');
+      const res = await axios('https://restcountries.com/v3.1/all');
       setData(res.data);
       setActualData(res.data);
     } catch (error) {
@@ -25,7 +25,8 @@ const Country = () => {
   };
 
   const handleChange = (val) => {
-    let newData = data.filter((item) => item.name.includes(val));
+    let newData = data.filter((item) => item.name.common.includes(val));
+    console.log(newData);
     if (newData.length > 0) {
       setActualData([...newData]);
     } else {
@@ -61,9 +62,12 @@ const Country = () => {
         />
       </CountryHeader>
       {actualData.map((item, idx) => (
-        <CountryDivStyle key={`${item.name}_${idx}`} className="countryCard">
-          <CountryImg src={item.flag} alt={item.name} />
-          <CountryHeading>{item.name}</CountryHeading>
+        <CountryDivStyle key={`${item.name.common}_${idx}`} className="countryCard">
+          <CountryImg
+            src={item.flags.png}
+            alt={item.flags.alt ? item.flags.alt : item.name.common}
+          />
+          <CountryHeading>{item.name.common}</CountryHeading>
         </CountryDivStyle>
       ))}
     </CountryDivWrapper>
