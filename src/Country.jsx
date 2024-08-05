@@ -50,7 +50,7 @@ const Country = () => {
   }, []);
 
   return (
-    <CountryDivWrapper>
+    <CountryDivWrapper className="container">
       <CountryHeader>
         <CountryInput
           type="text"
@@ -66,8 +66,9 @@ const Country = () => {
           <CountryImg
             src={item.flags.png}
             alt={item.flags.alt ? item.flags.alt : item.name.common}
+            className="country_flag"
           />
-          <CountryHeading>{item.name.common}</CountryHeading>
+          <CountryHeading className="country_name">{item.name.common}</CountryHeading>
         </CountryDivStyle>
       ))}
     </CountryDivWrapper>
