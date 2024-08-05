@@ -18,7 +18,10 @@ const Country = () => {
   };
 
   const handleChange = (val) => {
-    let newData = data.filter((item) => item.name.common.includes(val));
+    console.log(val.toLowerCase());
+    let newData = data.filter(
+      (item) => item.name.common.includes(val) || item.name.common.toLowerCase().includes(val)
+    );
     if (newData.length > 0) {
       setActualData([...newData]);
     } else {
