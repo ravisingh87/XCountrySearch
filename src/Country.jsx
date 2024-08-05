@@ -66,9 +66,9 @@ const Country = () => {
           <CountryImg
             src={item.flags.png}
             alt={item.flags.alt ? item.flags.alt : item.name.common}
-            className="country_flag"
+            className="countryFlag"
           />
-          <CountryHeading className="country_name">{item.name.common}</CountryHeading>
+          <CountryHeading className="countryName">{item.name.common}</CountryHeading>
         </CountryDivStyle>
       ))}
     </CountryDivWrapper>
